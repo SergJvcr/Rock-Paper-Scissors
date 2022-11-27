@@ -1,0 +1,9 @@
+Rock-Paper-Scissors is a hand game, usually played between two people, in which
+each player simultaneously forms one of three shapes with an outstretched hand.
+These shapes are 'rock' (a closed fist), 'paper' (a flat hand),and 'scissors'
+(a fist with the index finger and middle finger extended, forming a 'V').
+It has three possible outcomes: a tie, a win or a loss. A player who decides
+to play 'rock' will win another player who has chosen scissors ('rock smashes scissors'),
+but will lose to one who has played paper ('paper covers rock'). A play of paper will lose
+to a play of scissors ('scissors cuts paper'). If both players choose the same shape,
+the game is tied and is usually immediately replayed to break the tie.
