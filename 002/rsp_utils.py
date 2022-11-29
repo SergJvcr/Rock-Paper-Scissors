@@ -1,28 +1,57 @@
 import random
+import json
 
-possible_actions = ["rock", "paper", "scissors"]
+from settings import *
+
+# possible_actions = ["rock", "paper", "scissors"]
+possible_actions = []
 user_name = ""
+game_status_model = []
 
-def set_user_name(name) :
+
+def set_user_name(name):
     global user_name
     user_name = name
 
-def load_text_file(file_name)->str:
+
+def load_text_file(file_name) -> str:
     with open(file_name) as f:
         return f.readlines()
+
 
 def show_intro():
     # user_name = input("Enter your name: ")
     # print("\n\tRock-Paper-Scissors is a hand game, usually played between two people, in which\neach player simultaneously forms one of three shapes with an outstretched hand.\nThese shapes are 'rock' (a closed fist), 'paper' (a flat hand),and 'scissors' (a fist with\nthe index finger and middle finger extended, forming a 'V').\n\nIt has three possible outcomes: a tie, a win or a loss. A player who decides\nto play 'rock' will win another player who has chosen scissors ('rock smashes scissors'),\nbut will lose to one who has played paper ('paper covers rock'). A play of paper will lose\nto a play of scissors ('scissors cuts paper'). If both players choose the same shape,\nthe game is tied and is usually immediately replayed to break the tie.")
-    print(load_text_file('./res/intro.txt'))
+    print(load_text_file(get_into_file_location()))
+
+
+def load_json_object(file_name):
+    with open(file_name) as f:
+        return json.load(f)
+
+
+def load_game_model():
+    global game_status_model
+    game_status_model = load_json_object(get_model_file_location())
+
+    global possible_actions
+    possible_actions = []
+    for status in game_status_model:
+        possible_actions.append(status.get('name'))
+
 
 def define_user() -> str:
     return input("Enter your name: ")
 
 
 def get_user_input() -> str:
-    # possible_actions = ["rock", "paper", "scissors"]
-    return input("Enter a choice (rock, paper, scissors): ")
+    s = ""
+    for status in game_status_model:
+        if len(s) > 0:
+            s += ', '
+        s = s + status.get('name')
+
+    return input("Enter a choice (" + s + "): ")
 
 
 def check_choice_valid(choice) -> bool:
@@ -35,6 +64,19 @@ def get_computer_choice():
 
 def show_play_result():
     print("show_play_result")
+
+
+def determine_result_2(user_choice, computer_choice):
+    for status in game_status_model:
+        if (status.get('name') == user_choice):
+            if (computer_choice in status.get('win')):
+                print('User1 win: '+user_choice+' vs '+computer_choice)
+            elif (computer_choice in status.get('lose')):
+                print('User2 win: '+user_choice+' vs '+computer_choice)
+            else:
+                print(f"Both players selected {user_choice}. It's a tie!\n")
+
+            break
 
 
 def determine_result(user_choice, computer_choice):
@@ -66,8 +108,10 @@ def play():
 
         if check_choice_valid(user_action):
             computer_action = get_computer_choice()
-            print(f"\nYou chose {user_action}, computer chose {computer_action}.")
-            determine_result(user_action, computer_action)
+            print(
+                f"\nYou chose {user_action}, computer chose {computer_action}.")
+            # determine_result(user_action, computer_action)
+            determine_result_2(user_action, computer_action)
 
         else:
             print(f"{user_name}, please, enter the correct form word.")

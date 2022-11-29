@@ -1,0 +1,18 @@
+
+{
+    "rock": {
+        "shorts":["r","1"],
+        "win":["scissors"],
+        "lose":["paper"]
+    },
+    "scissors": {
+        "shorts":["s","2"],
+        "win":["paper"],
+        "lose":["rock"]
+    },
+    "paper": {
+        "shorts":["p","3"],
+        "win":["rock"],
+        "lose":["scissors"]
+    }
+}

@@ -1,0 +1,26 @@
+
+[
+    {
+        "name":"rock",
+        "shorts":["r","1"],
+        "win":["scissors"],
+        "lose":["paper", "humster"]
+    },
+    {
+        "name": "scissors",
+        "shorts":["s","2"],
+        "win":["paper"],
+        "lose":["rock", "humster"]
+    },
+    {
+        "name":"paper",
+        "shorts":["p","3"],
+        "win":["rock"],
+        "lose":["scissors", "humster"]
+    },
+    {    "name":"humster",
+        "shorts":["h","0"],
+        "win":["rock", "paper", "scissors"],
+        "lose":[]
+    }
+]
