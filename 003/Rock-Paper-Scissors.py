@@ -1,10 +1,7 @@
-import random
 from rsp_utils import *
-
 
 user_name = input("Enter your name: ")
 
-# print(open_text_file(r'./res/intro.txt'))
 # print(open_text_file(r'D:\works\project\Rock-Paper-Scissors\003\res\intro.txt'))
 print(open_text_file(r'.\003\res\intro.txt'))
 
